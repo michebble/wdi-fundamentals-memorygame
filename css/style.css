@@ -29,6 +29,11 @@ a {
 	color: #FFFFFF;
 	font-size: 18px;
 	margin: 0 20px;
+	border-bottom: 2px solid transparent;
+}
+
+a:hover {
+	border-color: #FFFFFF;
 }
 
 header {
@@ -55,4 +60,40 @@ p {
 
 img {
 	margin: 40px 8px;
+}
+
+footer {
+   text-transform: uppercase;
+   padding: 0 20px;
+   background-color: #0D2C40;
+   color: white;
+   font-size: 14;
+   letter-spacing: .08em;
+   font-weight: 500;
+}
+
+.copyright, .message {
+	font-family: Raleway, sans-serif;
+}
+
+.copyright {
+	float: left;
+}
+
+.message {
+	float: right;
+}
+
+.clearfix:after {
+visibility: hidden;
+display: block;
+content: " ";
+clear: both;
+height: 0;
+font-size: 0;
+}
+
+.name {
+	color: #F15B31;
+	font-weight: 700;
 }
