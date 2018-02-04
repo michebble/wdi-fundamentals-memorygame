@@ -1,3 +1,5 @@
+
+// js test
 console.log("Up and running!");
 
 
@@ -41,13 +43,43 @@ var resetSfx = new Audio("sounds/reset.wav");
 
 // create functions
 
-var beep = function(sfx) {
-  sfx.play();
+
+var shuffle = function(array) {
+	// this based on the Fisher-Yates Shuffle
+	// had trouble writing my own
+	// found this function at https://bost.ocks.org/mike/shuffle/compare.html
+	// and moditfied to match learneds function creation. 
+	// I would like to learn more about licenses and how to attribute correctly.
+  var m = array.length, t, i;
+  while (m) {
+    i = Math.floor(Math.random() * m--);
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+}
+
+var createBoard = function () {
+	shuffle(cards);
+	for(i=0; i < cards.length; i += 1) {
+		var cardElement = document.createElement('img');
+		cardElement.setAttribute('src','images/back.png');
+		cardElement.setAttribute('data-id',i);
+		cardElement.setAttribute('id','card' + i);
+		cardElement.addEventListener('click', flipCard);
+		document.getElementById('game-board').appendChild(cardElement);
+	}
+};
+
+
+var createResetButton = function () {
+	var buttonElement = document.getElementById('reset');
+	buttonElement.addEventListener('click', resetBoard);
 }
 
 var updateScore = function () {
 	var scoreTally = document.getElementById('score');
-	scoreTally.textContent = totalScore.toString();
+	scoreTally.textContent = "Score: " + totalScore.toString();
 
 };
 
@@ -55,6 +87,10 @@ var setNotification = function(message) {
 	var newNotification = document.getElementById('notification');
 	newNotification.textContent = message;
 };
+
+var beep = function(sfx) {
+  sfx.play();
+}
 
 var checkForMatch = function() {
 	if (cardsInPlay.length === 2) {
@@ -95,31 +131,6 @@ var flipCard = function() {
 	setTimeout(checkForMatch, 2000);
 };
 
-var shuffle = function(array) {
-	// this based on the Fisher-Yates Shuffle
-	// found at https://bost.ocks.org/mike/shuffle/compare.html
-	// and moditfied to match learneds function creation. 
-	// I would like to learn more about licenses and how to attribute correctly.
-  var m = array.length, t, i;
-  while (m) {
-    i = Math.floor(Math.random() * m--);
-    t = array[m];
-    array[m] = array[i];
-    array[i] = t;
-  }
-}
-
-var createBoard = function () {
-	shuffle(cards);
-	for(i=0; i < cards.length; i += 1) {
-		var cardElement = document.createElement('img');
-		cardElement.setAttribute('src','images/back.png');
-		cardElement.setAttribute('data-id',i);
-		cardElement.setAttribute('id','card' + i);
-		cardElement.addEventListener('click', flipCard);
-		document.getElementById('game-board').appendChild(cardElement);
-	}
-};
 
 var resetBoard = function () {
 	var gameBoard = document.getElementById('game-board');
@@ -133,11 +144,8 @@ var resetBoard = function () {
 	beep(resetSfx);
 };
 
-var createResetButton = function () {
-	var buttonElement = document.getElementById('reset');
-	buttonElement.addEventListener('click', resetBoard);
-}
 
+//get the game ready to play
 
 createBoard();
 createResetButton();

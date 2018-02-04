@@ -63,7 +63,7 @@ img {
 }
 
 button{
-	background-color: #F15B31; /* Green */
+	background-color: #F15B31;
     border: none;
     color: #FFFFFF;
     padding: 15px 32px;
@@ -83,15 +83,15 @@ footer {
    font-weight: 500;
 }
 
-.copyright, .message {
+.copyright, .message, #score, #notification {
 	font-family: Raleway, sans-serif;
 }
 
-.copyright {
+.copyright, #score {
 	float: left;
 }
 
-.message {
+.message, #notification {
 	float: right;
 }
 
@@ -107,11 +107,4 @@ font-size: 0;
 .name {
 	color: #F15B31;
 	font-weight: 700;
-}
-
-.statistics {
-	background-color: red;
-	color: #FFFFFF;
-	text-align: left;
-	margin: 10px 0 0 0;
 }
