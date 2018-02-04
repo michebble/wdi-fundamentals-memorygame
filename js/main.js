@@ -32,9 +32,18 @@ var cardsInPlayData = [];
 
 var totalScore = 0;
 
+var matchSfx = new Audio("sounds/match.wav");
+
+var lossSfx = new Audio("sounds/loss.wav");
+
+var resetSfx = new Audio("sounds/reset.wav");
 
 
 // create functions
+
+var beep = function(sfx) {
+  sfx.play();
+}
 
 var updateScore = function () {
 	var scoreTally = document.getElementById('score');
@@ -51,16 +60,18 @@ var checkForMatch = function() {
 	if (cardsInPlay.length === 2) {
 		if (cardsInPlay[0] === cardsInPlay[1]) {
 				setNotification("You found a match!");
+				totalScore = totalScore + 50;
+				updateScore();
+				beep(matchSfx);
 				for (var i = 0; i < cardsInPlayData.length; i++) {
 					var returnCard = document.getElementById(cardsInPlayData[i]);
 					returnCard.removeEventListener('click', flipCard);
 				}
 				cardsInPlay = [];
 				cardsInPlayData = [];
-				totalScore = totalScore + 50;
-				updateScore();
 			} else {
 				setNotification("Sorry, try again!");
+				beep(lossSfx);
 				for (var i = 0; i < cardsInPlayData.length; i++) {
 					var returnCard = document.getElementById(cardsInPlayData[i]);
 					returnCard.setAttribute('src', 'images/back.png');
@@ -119,6 +130,7 @@ var resetBoard = function () {
 	updateScore();
 	setNotification("Ready to play?");
 	createBoard();
+	beep(resetSfx);
 };
 
 var createResetButton = function () {
