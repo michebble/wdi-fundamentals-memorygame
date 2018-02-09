@@ -98,7 +98,7 @@ var checkForMatch = function() {
 				setNotification("You found a match!");
 				totalScore = totalScore + 50;
 				updateScore();
-				beep(matchSfx);
+				//beep(matchSfx);
 				for (var i = 0; i < cardsInPlayData.length; i++) {
 					var returnCard = document.getElementById(cardsInPlayData[i]);
 					returnCard.removeEventListener('click', flipCard);
@@ -107,7 +107,7 @@ var checkForMatch = function() {
 				cardsInPlayData = [];
 			} else {
 				setNotification("Sorry, try again!");
-				beep(lossSfx);
+				//beep(lossSfx);
 				for (var i = 0; i < cardsInPlayData.length; i++) {
 					var returnCard = document.getElementById(cardsInPlayData[i]);
 					returnCard.setAttribute('src', 'images/back.png');
@@ -141,7 +141,7 @@ var resetBoard = function () {
 	updateScore();
 	setNotification("Ready to play?");
 	createBoard();
-	beep(resetSfx);
+	//beep(resetSfx);
 };
 
 
